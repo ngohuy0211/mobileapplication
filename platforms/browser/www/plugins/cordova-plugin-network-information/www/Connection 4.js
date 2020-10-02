@@ -1,4 +1,4 @@
-/*
+cordova.define("cordova-plugin-network-information.Connection", function(require, exports, module) { /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -19,30 +19,18 @@
  *
 */
 
+/**
+ * Network status
+ */
 module.exports = {
-    id: 'browser',
-    cordovaVersion: '3.4.0',
-
-    bootstrap: function() {
-
-        var modulemapper = require('cordova/modulemapper');
-        var channel = require('cordova/channel');
-
-        modulemapper.clobbers('cordova/exec/proxy', 'cordova.commandProxy');
-
-        channel.onNativeReady.fire();
-
-        // FIXME is this the right place to clobber pause/resume? I am guessing not
-        // FIXME pause/resume should be deprecated IN CORDOVA for pagevisiblity api
-        document.addEventListener('webkitvisibilitychange', function() {
-            if (document.webkitHidden) {
-                channel.onPause.fire();
-            }
-            else {
-                channel.onResume.fire();
-            }
-        }, false);
-
-    // End of bootstrap
-    }
+        UNKNOWN: "unknown",
+        ETHERNET: "ethernet",
+        WIFI: "wifi",
+        CELL_2G: "2g",
+        CELL_3G: "3g",
+        CELL_4G: "4g",
+        CELL:"cellular",
+        NONE: "none"
 };
+
+});

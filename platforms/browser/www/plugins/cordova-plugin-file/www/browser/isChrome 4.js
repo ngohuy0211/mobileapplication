@@ -1,4 +1,4 @@
-cordova.define("cordova-plugin-media-capture.CaptureImageOptions", function(require, exports, module) { /*
+cordova.define("cordova-plugin-file.isChrome", function(require, exports, module) { /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,16 +17,12 @@ cordova.define("cordova-plugin-media-capture.CaptureImageOptions", function(requ
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
-
-/**
- * Encapsulates all image capture operation configuration options.
  */
-var CaptureImageOptions = function(){
-    // Upper limit of images user can take. Value must be equal or greater than 1.
-    this.limit = 1;
-};
 
-module.exports = CaptureImageOptions;
+module.exports = function () {
+    // window.webkitRequestFileSystem and window.webkitResolveLocalFileSystemURL are available only in Chrome and
+    // possibly a good flag to indicate that we're running in Chrome
+    return window.webkitRequestFileSystem && window.webkitResolveLocalFileSystemURL;
+};
 
 });

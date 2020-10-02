@@ -1,4 +1,4 @@
-cordova.define("cordova-plugin-device-orientation.CompassError", function(require, exports, module) { /*
+cordova.define("cordova-plugin-contacts.ContactField", function(require, exports, module) { /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -20,17 +20,20 @@ cordova.define("cordova-plugin-device-orientation.CompassError", function(requir
 */
 
 /**
- *  CompassError.
- *  An error code assigned by an implementation when an error has occurred
- * @constructor
- */
-var CompassError = function(err) {
-    this.code = (err !== undefined ? err : null);
+* Generic contact field.
+* @constructor
+* @param {DOMString} id unique identifier, should only be set by native code // NOTE: not a W3C standard
+* @param type
+* @param value
+* @param pref
+*/
+var ContactField = function(type, value, pref) {
+    this.id = null;
+    this.type = (type && type.toString()) || null;
+    this.value = (value && value.toString()) || null;
+    this.pref = (typeof pref != 'undefined' ? pref : false);
 };
 
-CompassError.COMPASS_INTERNAL_ERR = 0;
-CompassError.COMPASS_NOT_SUPPORTED = 20;
-
-module.exports = CompassError;
+module.exports = ContactField;
 
 });
