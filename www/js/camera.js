@@ -7,7 +7,7 @@ $(document).ready(function(){
         alert(err)
     }
     function accessCamera() {
-        navigator.camera.getPicture(onSuccess, onFail, {  
+        navigator.camera.getPicture(camSuccess, camError, {  
             quality: 50, 
             destinationType: Camera.DestinationType.DATA_URL 
          });
