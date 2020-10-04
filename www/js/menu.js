@@ -280,10 +280,8 @@ $(document).ready(function (){
           <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
         </div>
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6" id="imageCamera">
             <label for="inputCity">camera</label>
-            <img id="#image_camera"  alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-            <p id="srcImg"></p>
             <button class="btn btn-primary" id="btnCamera">Camera</button>
             </div>
           <div class="form-group col-md-4">
@@ -296,6 +294,5 @@ $(document).ready(function (){
         <button type="submit" class="btn btn-primary">Sign in</button>
       </form>`
         content.empty().append(newContent)
-        $(document).on('click', "btnCamera", accessCamera)
     })
 })
