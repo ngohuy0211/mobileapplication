@@ -2,7 +2,7 @@ $(document).ready(function(){
     function accessCamera() {
         navigator.camera.getPicture(
             function(result) {
-                $("#image").append(`<img src="${result}">`)
+                document.getElementById('image').src = result
             }, function(error) {
                 alert(error)
             }, {  
