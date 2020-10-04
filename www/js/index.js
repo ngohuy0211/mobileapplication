@@ -49,7 +49,7 @@ var app = {
 };
 function camSuccess(imgData) {
     let image = document.getElementById("image_camera")
-    image.src = "data:image/jpeg;base64," + imageData;
+    image.src = "data:image/jpeg;base64," + imgData;
 }
 function camError (err) {
     alert(err)
