@@ -7,12 +7,10 @@ $(document).ready(function(){
         alert(err)
     }
     function accessCamera() {
-        let options = {
-            quality: 50,
-            descriptionType: Camera.DestinationType.FILE_URI,
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY
-        }
-        navigator.camera.getPicture(camSuccess, camError, options)
+        navigator.camera.getPicture(onSuccess, onFail, {  
+            quality: 50, 
+            destinationType: Camera.DestinationType.DATA_URL 
+         });
     }
     $(document).on('click', "#btnCamera", () => {
         accessCamera()
