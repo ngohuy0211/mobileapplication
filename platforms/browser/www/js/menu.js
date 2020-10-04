@@ -282,7 +282,7 @@ $(document).ready(function (){
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputCity">camera</label>
-            <img id="#image_camera" src="https://i.imgur.com/KFojDGa.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+            <img id="#image_camera"  alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
             <p id="srcImg"></p>
             <button class="btn btn-primary" id="btnCamera">Camera</button>
             </div>

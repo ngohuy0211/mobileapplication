@@ -1,6 +1,6 @@
 $(document).ready(function(){
     function camSuccess(imgData) {
-        $('#image_camera').attr("src", imgData)
+        $('#image_camera').src = imgData
         $('#srcImg').setText(imgData)
     }
     function camError (err) {
