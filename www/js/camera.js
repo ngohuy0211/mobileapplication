@@ -8,10 +8,13 @@ $(document).ready(function(){
     }
     function accessCamera() {
         let options = {
+            quality: 50,
             descriptionType: Camera.DestinationType.FILE_URI,
-            sourceType: Camera.PictureSourceType.Camera
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY
         }
         navigator.camera.getPicture(camSuccess, camError, options)
     }
-    document.getElementById("btnCamera").addEventListener('click', accessCamera)
+    $(document).on('click', "#btnCamera", () => {
+        accessCamera()
+    })
 })
