@@ -281,9 +281,11 @@ $(document).ready(function (){
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
+            <label for="inputCity">camera</label>
+            <img id="#image_camera" src="https://i.imgur.com/KFojDGa.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+            <p id="srcImg"></p>
+            <button class="btn btn-primary" id="btnCamera">Camera</button>
+            </div>
           <div class="form-group col-md-4">
             <label for="inputState">State</label>
             <select id="inputState" class="form-control">
@@ -291,19 +293,6 @@ $(document).ready(function (){
               <option>...</option>
             </select>
           </div>
-          <div class="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
-          </div>
-        </div>
         <button type="submit" class="btn btn-primary">Sign in</button>
       </form>`
         content.empty().append(newContent)
