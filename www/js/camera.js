@@ -12,7 +12,5 @@ $(document).ready(function(){
             destinationType: Camera.DestinationType.DATA_URL 
          });
     }
-    $(document).on('click', "#btnCamera", () => {
-        accessCamera()
-    })
+    $(document).on('click', "#btnCamera", accessCamera)
 })
