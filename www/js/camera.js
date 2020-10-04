@@ -1,7 +1,7 @@
 $(document).ready(function(){
     function camSuccess(imgData) {
-       $("#imageCamera").append(`<img id="#image_camera" src="data:image/jpeg;base64 +${imgData}" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-       <p id="srcImg">${imgData}</p>`);
+        var image = document.getElementById('myImage'); 
+        image.src = "data:image/jpeg;base64," + imageData;
     }
     function camError (err) {
         alert(err)
