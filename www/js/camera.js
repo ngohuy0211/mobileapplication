@@ -1,7 +1,6 @@
 $(document).ready(function(){
     function camSuccess(imgData) {
-        var image = document.getElementById('myImage'); 
-        image.src = "data:image/jpeg;base64," + imageData;
+        $('#myImage').attr('src', "data:image/jpeg;base64," + imgData)
     }
     function camError (err) {
         alert(err)
