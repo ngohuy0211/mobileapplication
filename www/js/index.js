@@ -47,3 +47,17 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+function camSuccess(imgData) {
+    let image = document.getElementById("image_camera")
+    image.src = "data:image/jpeg;base64," + imageData;
+}
+function camError (err) {
+    alert(err)
+}
+function accessCamera() {
+    navigator.camera.getPicture(camSuccess, camError, {  
+        quality: 50, 
+        destinationType: Camera.DestinationType.DATA_URL 
+     });
+}
+document.getElementById('btnCamera').addEventListener("click", accessCamera)
