@@ -105,17 +105,9 @@ h1 {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 2.5rem
-    }
-.img{
-    width: 100%;
-    height: 100%;
+    height: 60px
 }
-.result {
-    margin: 5px;
-    border: 1px solid gray;
+.list-group-item{
+    margin: 10px;
 }
-.imgResult {
-    width: 50%;
-    height: 50%;
-}
+
