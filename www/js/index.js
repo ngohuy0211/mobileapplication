@@ -60,4 +60,3 @@ function accessCamera() {
         destinationType: Camera.DestinationType.DATA_URL 
      });
 }
-document.getElementById('btnCamera').addEventListener("click", accessCamera)

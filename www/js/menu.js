@@ -296,5 +296,6 @@ $(document).ready(function (){
         <button type="submit" class="btn btn-primary">Sign in</button>
       </form>`
         content.empty().append(newContent)
+        $(document).on('click', "btnCamera", accessCamera)
     })
 })
