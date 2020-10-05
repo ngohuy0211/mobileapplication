@@ -1,18 +1,15 @@
 $(document).ready(function(){
-    function camSuccess(imgData) {
-        $('#image_camera').src = imgData
-        $('#srcImg').setText(imgData)
-    }
-    function camError (err) {
-        alert(err)
-    }
     function accessCamera() {
-        navigator.camera.getPicture(camSuccess, camError, {  
-            quality: 50, 
-            destinationType: Camera.DestinationType.DATA_URL 
+        navigator.camera.getPicture(
+            function(result) {
+                document.getElementById('image').src = result
+            }, function(error) {
+                alert(error)
+            }, {  
+            sourceType: Camera.PictureSourceType.CAMERA,
+            saveToPhotoAlbum: true,
+            allowEdit: true 
          });
     }
-    $(document).on('click', "#btnCamera", () => {
-        accessCamera()
-    })
+    $(document).on('click', "#btnCamera", accessCamera)
 })

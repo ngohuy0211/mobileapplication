@@ -5,6 +5,13 @@ $( window ).on( "load", function() {
             <div class="col-lg-7 mx-auto">
                 <h5 class="display-4">Product List</h5>
             </div>
+            <form>
+                <label for="browser">Choose a type restaurant:</label>
+                <input list="browsers" name="browser" id="browser">
+                <datalist id="browsers">
+                </datalist>
+                <input type="submit" class="btn btn-primary" value="Filter">
+            </form>
         </div>
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -95,6 +102,14 @@ $( window ).on( "load", function() {
         </div>
     </div>`
     $('#content').append(newContent)
+    const resType = getAllData("resType")
+    resType.onsuccess = (event) => {
+        const results = event.target.result
+        const options = `${results.map(item => (
+            `<option data-value="${item.id}">${item.resType}</option>`
+        ))}`
+        $('#browsers').append(options)
+    }
 });
 $(document).ready(function (){
     let content = $('#content')
@@ -280,10 +295,8 @@ $(document).ready(function (){
           <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
         </div>
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6" id="imageCamera">
             <label for="inputCity">camera</label>
-            <img id="#image_camera"  alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-            <p id="srcImg"></p>
             <button class="btn btn-primary" id="btnCamera">Camera</button>
             </div>
           <div class="form-group col-md-4">
