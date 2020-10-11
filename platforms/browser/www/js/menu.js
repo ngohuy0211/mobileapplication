@@ -6,10 +6,9 @@ $( window ).on( "load", function() {
                 <h5 class="display-4">Product List</h5>
             </div>
             <form>
-                <label for="browser">Choose a type restaurant:</label>
-                <input list="browsers" name="browser" id="browser">
-                <datalist id="browsers">
-                </datalist>
+               <select id="typeRes">
+                    
+               </select>
                 <input type="submit" class="btn btn-primary" value="Filter">
             </form>
         </div>
@@ -105,10 +104,11 @@ $( window ).on( "load", function() {
     const resType = getAllData("resType")
     resType.onsuccess = (event) => {
         const results = event.target.result
-        const options = `${results.map(item => (
-            `<option data-value="${item.id}">${item.resType}</option>`
-        ))}`
-        $('#browsers').append(options)
+        results.map((item)=>{
+            let htmlRestType =  `<option value="${item.id}">${item.resType}</option>`
+            $("#typeRes").append(htmlRestType)
+        })
+      
     }
 });
 $(document).ready(function (){
