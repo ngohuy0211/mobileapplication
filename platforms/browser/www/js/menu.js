@@ -19,16 +19,17 @@ function LoadHome(){
     $('#content').empty().append(newContent)
     resType.onsuccess = (event) => {
         const results = event.target.result
-        for(var i = 0; i < results.length; i++) {
+        console.log(results)
+        for(var i in results) {
             let html =`<li class="list-group-item m-2 rounded">
         <!-- Custom content-->
-        <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+        <div class="media align-items-lg-center flex-column flex-lg-row p-3" >
             <div class="media-body order-2 order-lg-1">
                 <h5 class="mt-0 font-weight-bold mb-2">${results[i].res_name}</h5>
                 <p class="font-italic text-muted mb-0 small">${results[i].res_type}</p>
                 <div class="d-flex align-items-center justify-content-between mt-1">
                     <h6 class="font-weight-bold my-2">${results[i].owner}</h6>
-                    <table>
+                    <table class="ml-6">
                         <tr>
                             <th style="background-color:#33cc33">Service<th>
                             <td>
@@ -48,18 +49,98 @@ function LoadHome(){
                             <th>
                         </tr>
                     </table>
-                    <ul class="list-inline small">
-                    
-                    </ul>
                 </div>
-                <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                <button class="btn btn-danger" rateId="${results[i].id}" id="delete_rate"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
             </div>
-            <img src="${results[i].image[0]}" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+            <img src="" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
         </div> <!-- End -->
             </li> <!-- End -->`
             $('#list_rest').append(html);
         }
     }
+}
+function LoadAdd(){
+    let content = $('#content')
+    const newContent = `
+    <h2>Rated</h2>
+    <form id="rate">
+        <div >
+            <div class="form-group">
+                <label>Your name</label>
+                <input type="text" class="form-control"  placeholder="Enter your name" id="owner_name" required pattern="^(?=[a-zA-Z]{3,20}$)(?!.*[_.]{2})[^_.].*[^_.]$" title="Please only enter text">
+            </div>
+            <div class="form-group">
+                <label>Your phone</label>
+                <input type="text" class="form-control" placeholder="Enter your phone" id="owner_phone"  required>
+            </div>
+            <div class="form-group">
+                <label>Restaurant name</label>
+                <input type="text" class="form-control"  placeholder="Enter restaurant name" id="restaurant_name">
+            </div>
+            <div class="form-group">
+                <label>Restaurant type</label>
+                <input  id="res-types"  list= "res-type" type="text" required/>
+                <datalist id="res-type">
+                    <option value="Grill">
+                    <option value="Fast food">
+                    <option value="Cake">
+                    <option value="Seafood">
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label>Restaurant address</label>
+                <input type="text" class="form-control"  placeholder="Enter restaurant address" id="res_address" required>
+            </div>
+            <div class="form-group" id="image_upload">
+                <label>Image</label>
+                <input type="file" id="files" name="files" multiple capture>
+            </div>
+            <div class="form-group">
+                <label>Service</label>
+                <input list="services"  id="service_rate"  type= "text" required>
+                    <datalist id="services">
+                        <option value="Bad">
+                        <option value="Normal">
+                        <option value="Rather">
+                        <option value="Good">
+                        <option value="Excellent">
+                    </datalist>
+            </div>
+            <div class="form-group">
+                <label>Cleanliness</label>
+                <input list="cleans"  id="clean_rate" type = "text"required>
+                <datalist id="cleans">
+                        <option value="Bad">
+                        <option value="Normal">
+                        <option value="Rather">
+                        <option value="Good">
+                        <option value="Excellent">
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label>Food quality</label>
+                <input list="foods"  id="food_rate" type = "text"required>
+                    <datalist id="foods">
+                        <option value="Bad">
+                        <option value="Normal">
+                        <option value="Rather">
+                        <option value="Good">
+                        <option value="Excellent">
+                    </datalist>
+            </div>
+            <div class="form-group">
+                <label>Day and time of visit</label>
+                <input type="date" class="form-control" id="date" required>
+                <input type="time" class="form-control"  id="time" required>
+            </div>
+            <div class="form-group">
+            <label >Notes</label>
+            <textarea class="form-control" id="notes" rows="3"></textarea>
+        </div>
+        <button type ="submit" class="btn btn-success">Post</button>
+        </div>
+    </form>`
+    content.empty().append(newContent)
 }
 $( window ).on( "load", function () {
    LoadHome()
@@ -153,86 +234,44 @@ $(document).ready(function (){
        content.empty().append(newContent)
     })
     $(document).on('click', '#add', ()=>{
-        const newContent = `
-            <h2>Rated</h2>
-            <form method="post" action="demoform.asp" >
-                <div >
-                    <div class="form-group">
-                        <label>Your name</label>
-                        <input type="text" class="form-control"  placeholder="Enter your name" name="owner_name" required >
-                    </div>
-                    <div class="form-group">
-                        <label>Your phone</label>
-                        <input type="text" class="form-control" placeholder="Enter your phone">
-                    </div>
-                    <div class="form-group">
-                        <label>Restaurant name</label>
-                        <input type="text" class="form-control"  placeholder="Enter restaurant name" name="restaurant_name">
-                    </div>
-                    <div class="form-group">
-                        <label>Restaurant type</label>
-                        <input list="ice-cream-flavors" id="ice-cream-choice" name="res-type" />
-                        <datalist id="ice-cream-flavors">
-                            <option value="Chocolate">
-                            <option value="Coconut">
-                            <option value="Mint">
-                            <option value="Strawberry">
-                            <option value="Vanilla">
-                        </datalist>
-                    </div>
-                    <div class="form-group">
-                        <label>Restaurant address</label>
-                        <input type="text" class="form-control"  placeholder="Enter restaurant address">
-                    </div>
-                    <div class="form-group">
-                        <label>Image</label>
-                        <input type="file" id="files" name="files" multiple><br><br>
-                    </div>
-                    <div class="form-group">
-                        <label>Service</label>
-                        <input list="browsers" name="service" id="browser">
-                            <datalist id="browsers">
-                                <option value="Bad">
-                                <option value="Normal">
-                                <option value="Rather">
-                                <option value="Good">
-                                <option value="Excellent">
-                            </datalist>
-                    </div>
-                    <div class="form-group">
-                        <label>Cleanliness</label>
-                        <input list="browsers" name="clean" id="browser">
-                            <datalist id="browsers">
-                            <option value="Bad">
-                            <option value="Normal">
-                            <option value="Rather">
-                            <option value="Good">
-                            <option value="Excellent">
-                            </datalist>
-                    </div>
-                    <div class="form-group">
-                        <label>Food quality</label>
-                        <input list="browsers" name="food" id="browser">
-                            <datalist id="browsers">
-                            <option value="Bad">
-                            <option value="Normal">
-                            <option value="Rather">
-                            <option value="Good">
-                            <option value="Excellent">
-                            </datalist>
-                    </div>
-                    <div class="form-group">
-                        <label>Day and time of visit</label>
-                        <input type="date" class="form-control">
-                        <input type="time" class="form-control">
-                    </div>
-                    <div class="form-group">
-                    <label >Notes</label>
-                    <textarea class="form-control" name="notes" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-success">Post</button>
-                </div>
-            </form>`
-        content.empty().append(newContent)
+        LoadAdd()
+        $('#files').on('change', function(event){
+            console.log(event.target.files)
+        })
+        $('#rate').on('submit', ()=>{
+            const rate = {
+                owner: $('#owner_name').val().trim(),
+                owner_phone: $('#owner_phone').val().trim(),
+                res_name: $('#restaurant_name').val().trim(),
+                res_type: $('#res-types').val().trim(),
+                res_address: $('#res_address').val().trim(),
+                service_rate: $('#service_rate').val().trim(),
+                clean_rate: $('#clean_rate').val().trim(),
+                food_rate: $('#food_rate').val().trim(),
+                date_visited: $('#date').val() + " " + $('#time').val(),
+                notes: $('#notes').val(),
+            }
+            const addResquest = addData("Irate", rate)
+
+            addResquest.onsuccess = () => {
+                let html = `<div class="alert alert-primary" role="alert">
+                Your feedback has been posted
+              </div>`
+                LoadAdd()
+              $('#content').append(html)
+              return false
+            }
+        })
+    })
+      
+    $(document).on('click', '#delete_rate', function () {
+        const delete_rate = DeleteData("Irate", $(this).attr("rateId"))
+        delete_rate.onsuccess = () => {
+            console.log("delete_rate success")
+        }
+        delete_rate.onerror = (error) => {
+            console.log(error)
+        }
+        
     })
 })

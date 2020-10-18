@@ -59,4 +59,10 @@ request.onsuccess = function(event) {
     request = objectStore.getAll();
     return request
  }
- 
+ function addData(collectionName, data) {
+    return db.transaction([collectionName], "readwrite").objectStore(collectionName).add(data)
+   
+ }
+ function DeleteData(collectionName, data) {
+    return db.transaction([collectionName], "readwrite").objectStore(collectionName).delete(data)
+ }
