@@ -469,6 +469,26 @@ module.exports = [
         "clobbers": [
             "window.Media"
         ]
+    },
+    {
+        "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+        "id": "cordova-sqlite-storage.SQLitePlugin",
+        "pluginId": "cordova-sqlite-storage",
+        "clobbers": [
+            "SQLitePlugin"
+        ]
+    },
+    {
+        "file": "plugins/cordova-sqlite-storage/node_modules/cordova-sqlite-storage-dependencies/sql-asm-memory-growth.js",
+        "id": "cordova-sqlite-storage.sql",
+        "pluginId": "cordova-sqlite-storage",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-sqlite-storage/src/browser/SQLiteProxy.js",
+        "id": "cordova-sqlite-storage.SQLiteProxy",
+        "pluginId": "cordova-sqlite-storage",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -487,7 +507,8 @@ module.exports.metadata =
     "cordova-plugin-inappbrowser": "1.3.0",
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-file-transfer": "1.5.1",
-    "cordova-plugin-media": "2.2.0"
+    "cordova-plugin-media": "2.2.0",
+    "cordova-sqlite-storage": "5.1.0"
 }
 // BOTTOM OF METADATA
 });
