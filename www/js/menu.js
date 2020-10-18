@@ -1,4 +1,4 @@
-$( window ).on( "load", function () {
+function LoadHome(){
     const resType = getAllData("Irate")
     const newContent = ` <div class="row" data-role="listview" id="pageContent">
     <div class="container py-5">
@@ -16,7 +16,7 @@ $( window ).on( "load", function () {
             </div>
         </div>
     </div>`
-    $('#content').append(newContent)
+    $('#content').empty().append(newContent)
     resType.onsuccess = (event) => {
         const results = event.target.result
         for(var i = 0; i < results.length; i++) {
@@ -60,72 +60,14 @@ $( window ).on( "load", function () {
             $('#list_rest').append(html);
         }
     }
+}
+$( window ).on( "load", function () {
+   LoadHome()
 });
 $(document).ready(function (){
     let content = $('#content')
     $(document).on('click', "#home", ()=>{
-        const resType = getAllData("Irate")
-        const newContent = ` <div class="row" data-role="listview" id="pageContent">
-        <div class="container py-5">
-            <div class="row text-center mb-5">
-                <div class="col-lg-7 mx-auto">
-                    <h5 class="display-4">Product List</h5>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <!-- List group-->
-                    <ul class="list-group shadow" id="list_rest">
-                        <!-- list group item-->        
-                    </ul> <!-- End -->
-                </div>
-            </div>
-        </div>`
-        $('#content').append(newContent)
-        resType.onsuccess = (event) => {
-            const results = event.target.result
-            for(var i = 0; i < results.length; i++) {
-                let html =`<li class="list-group-item m-2 rounded">
-            <!-- Custom content-->
-            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                <div class="media-body order-2 order-lg-1">
-                    <h5 class="mt-0 font-weight-bold mb-2">${results[i].res_name}</h5>
-                    <p class="font-italic text-muted mb-0 small">${results[i].res_type}</p>
-                    <div class="d-flex align-items-center justify-content-between mt-1">
-                        <h6 class="font-weight-bold my-2">${results[i].owner}</h6>
-                        <table>
-                            <tr>
-                                <th style="background-color:#33cc33">Service<th>
-                                <td>
-                                    ${results[i].service_rate}
-                                <td>
-                            </tr>
-                            <tr>
-                                <th style="background-color:#9933ff">Clean<th>
-                                <td>    
-                                ${results[i].clean_rate}
-                                <th>
-                            </tr>
-                            <tr>
-                                <th style="background-color:#ffcc00">Food<th>
-                                <td>
-                                ${results[i].food_rate}
-                                <th>
-                            </tr>
-                        </table>
-                        <ul class="list-inline small">
-                        
-                        </ul>
-                    </div>
-                    <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                </div>
-                <img src="${results[i].image[0]}" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-            </div> <!-- End -->
-                </li> <!-- End -->`
-                $('#list_rest').append(html);
-            }
-        }
-        content.empty().append(newContent)
+        LoadHome()
     })
     $(document).on('click', "#search", ()=>{
         const newContent= ` <form class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2" id="searchForm">
@@ -217,7 +159,11 @@ $(document).ready(function (){
                 <div >
                     <div class="form-group">
                         <label>Your name</label>
-                        <input type="text" class="form-control"  placeholder="Enter your name" name="owner_name">
+                        <input type="text" class="form-control"  placeholder="Enter your name" name="owner_name" required >
+                    </div>
+                    <div class="form-group">
+                        <label>Your phone</label>
+                        <input type="text" class="form-control" placeholder="Enter your phone">
                     </div>
                     <div class="form-group">
                         <label>Restaurant name</label>
@@ -235,12 +181,8 @@ $(document).ready(function (){
                         </datalist>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label>Restaurant address</label>
+                        <input type="text" class="form-control"  placeholder="Enter restaurant address">
                     </div>
                     <div class="form-group">
                         <label>Image</label>
@@ -280,10 +222,15 @@ $(document).ready(function (){
                             </datalist>
                     </div>
                     <div class="form-group">
+                        <label>Day and time of visit</label>
+                        <input type="date" class="form-control">
+                        <input type="time" class="form-control">
+                    </div>
+                    <div class="form-group">
                     <label >Notes</label>
                     <textarea class="form-control" name="notes" rows="3"></textarea>
                 </div>
-                <button type="button" class="btn btn-success">Post</button>
+                <button type="submit" class="btn btn-success">Post</button>
                 </div>
             </form>`
         content.empty().append(newContent)
