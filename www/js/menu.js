@@ -267,7 +267,7 @@ $(document).ready(function (){
     $(document).on('click', '#delete_rate', function () {
         const delete_rate = DeleteData("Irate", $(this).attr("rateId"))
         delete_rate.onsuccess = () => {
-            console.log("delete_rate success")
+            LoadHome()
         }
         delete_rate.onerror = (error) => {
             console.log(error)
