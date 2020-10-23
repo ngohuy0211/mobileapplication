@@ -63,6 +63,13 @@ request.onsuccess = function(event) {
     return db.transaction([collectionName], "readwrite").objectStore(collectionName).add(data)
    
  }
- function DeleteData(collectionName, data) {
-    return db.transaction([collectionName], "readwrite").objectStore(collectionName).delete(data)
+ function DeleteData(data) {
+   const dataDelete = db.transaction(["Irate"], "readwrite").
+   objectStore("Irate").delete({id= data})
+   dataDelete.onsuccess = function (){
+      console.log("Delete success")
+   }
+   dataDelete.onerror = function(){
+      console.log("Delete error")
+   }
  }

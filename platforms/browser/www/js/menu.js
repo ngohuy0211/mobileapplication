@@ -257,7 +257,7 @@ $(document).ready(function (){
                 let html = `<div class="alert alert-primary" role="alert">
                 Your feedback has been posted
               </div>`
-                LoadAdd()
+                LoadHome()
               $('#content').append(html)
               return false
             }
@@ -265,13 +265,7 @@ $(document).ready(function (){
     })
       
     $(document).on('click', '#delete_rate', function () {
-        const delete_rate = DeleteData("Irate", $(this).attr("rateId"))
-        delete_rate.onsuccess = () => {
-            console.log("delete_rate success")
-        }
-        delete_rate.onerror = (error) => {
-            console.log(error)
-        }
         
+        DeleteData($(this).attr("rateId"))
     })
 })
