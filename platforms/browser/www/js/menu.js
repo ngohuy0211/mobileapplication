@@ -1,6 +1,7 @@
 function playMedia(url) {
     const media = new Media(url)
-    media.play(3)
+    media.play()
+    media.setVolume('6.0')
 }
 function LoadHome(){
     const resType = getAllData("Irate")
