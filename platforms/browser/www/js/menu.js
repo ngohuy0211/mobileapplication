@@ -204,6 +204,7 @@ $(document).ready(function (){
                 date_visited: $('#date').val() + " " + $('#time').val(),
                 notes: $('#notes').val(),
             }
+            navigator.vibrate(3000)
             addData("Irate", rate)
 
         })
@@ -211,6 +212,7 @@ $(document).ready(function (){
       
     $(document).on('click', '#delete_rate', function () {
         const rateid =  $(this).attr("rateId")
+        navigator.vibrate(3000)
        DeleteData(rateid)
     })
     $(document).on('click', '#searchBtn', ()=>{
