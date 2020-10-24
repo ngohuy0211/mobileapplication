@@ -76,6 +76,7 @@ request.onsuccess = function(event) {
    const dataDelete = db.transaction(["Irate"], "readwrite").
    objectStore("Irate").delete(Number(data))
    dataDelete.onsuccess = function (){
+      playMedia('../media/are-you-kidding-488.mp3')
       LoadHome()
    }
    dataDelete.onerror = function(){
