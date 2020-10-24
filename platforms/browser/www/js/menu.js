@@ -180,17 +180,17 @@ $(document).ready(function (){
     let content = $('#content')
     $(document).on('click', "#home", ()=>{
         playMedia('../media/beyond-doubt-2-581.mp3')
+        navigator.notification.beep(1);
         LoadHome()
     })
     $(document).on('click', "#search", ()=>{
         playMedia('../media/beyond-doubt-2-581.mp3')
+        navigator.notification.beep(1);
         LoadSearch()
     })
     $(document).on('click', '#add', ()=>{
         LoadAdd()
-        $('#files').on('change', function(event){
-            console.log(event.target.files)
-        })
+        navigator.notification.beep(1);
         $('#rate').on('submit', ()=>{
             const rate = {
                 owner: $('#owner_name').val().trim(),
