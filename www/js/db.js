@@ -60,16 +60,30 @@ request.onsuccess = function(event) {
     return request
  }
  function addData(collectionName, data) {
-    return db.transaction([collectionName], "readwrite").objectStore(collectionName).add(data)
-   
+    const Newdata = db.transaction([collectionName], "readwrite").objectStore(collectionName).add(data)
+    Newdata.onsuccess = () => {
+      let html = `<div class="alert alert-primary" role="alert">
+      Your feedback has been posted
+    </div>`
+      LoadAdd()
+    $('#content').append(html)
+  }
+  Newdata.onerror = () =>{
+     alert('Error Rate')
+  }
  }
  function DeleteData(data) {
    const dataDelete = db.transaction(["Irate"], "readwrite").
-   objectStore("Irate").delete({id= data})
+   objectStore("Irate").delete(Number(data))
    dataDelete.onsuccess = function (){
-      console.log("Delete success")
+      LoadHome()
    }
    dataDelete.onerror = function(){
-      console.log("Delete error")
+      alert("Error deleting")
    }
+ }
+ function Search (data) {
+    return db.transaction(["Irate"], "readonly")
+    .objectStore("Irate").openCursor(IDBKeyRange.bound(data, data + '\uffff'), 'prev')
+
  }

@@ -1,10 +1,14 @@
+function playMedia(url) {
+    const media = new Media(url)
+    media.play(3)
+}
 function LoadHome(){
     const resType = getAllData("Irate")
     const newContent = ` <div class="row" data-role="listview" id="pageContent">
     <div class="container py-5">
         <div class="row text-center mb-5">
             <div class="col-lg-7 mx-auto">
-                <h5 class="display-4">Product List</h5>
+                <h5 class="display-4">Restaurant List</h5>
             </div>
         </div>
         <div class="row">
@@ -19,7 +23,6 @@ function LoadHome(){
     $('#content').empty().append(newContent)
     resType.onsuccess = (event) => {
         const results = event.target.result
-        console.log(results)
         for(var i in results) {
             let html =`<li class="list-group-item m-2 rounded">
         <!-- Custom content-->
@@ -29,6 +32,7 @@ function LoadHome(){
                 <p class="font-italic text-muted mb-0 small">${results[i].res_type}</p>
                 <div class="d-flex align-items-center justify-content-between mt-1">
                     <h6 class="font-weight-bold my-2">${results[i].owner}</h6>
+                    <div></div>
                     <table class="ml-6">
                         <tr>
                             <th style="background-color:#33cc33">Service<th>
@@ -58,8 +62,9 @@ function LoadHome(){
             $('#list_rest').append(html);
         }
     }
-}
+ }
 function LoadAdd(){
+    playMedia('../media/beyond-doubt-2-581.mp3')
     let content = $('#content')
     const newContent = `
     <h2>Rated</h2>
@@ -142,19 +147,12 @@ function LoadAdd(){
     </form>`
     content.empty().append(newContent)
 }
-$( window ).on( "load", function () {
-   LoadHome()
-});
-$(document).ready(function (){
+function LoadSearch(){
     let content = $('#content')
-    $(document).on('click', "#home", ()=>{
-        LoadHome()
-    })
-    $(document).on('click', "#search", ()=>{
-        const newContent= ` <form class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2" id="searchForm">
+    const newContent= ` <form class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2" id="searchForm">
         <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
-          aria-label="Search">
-          <button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+          aria-label="Search" id="keySearch">
+          <button type="button" class="btn btn-primary" id="searchBtn"><i class="fa fa-search" aria-hidden="true"></i></button>
       </form>
       <div class="row" data-role="listview" id="pageContent">
        <div class="container py-5">
@@ -167,71 +165,25 @@ $(document).ready(function (){
                <div class="col-lg-8 mx-auto">
                    <!-- List group-->
                    <ul class="list-group shadow">
-                       <!-- list group item-->
-                       <li class="list-group-item m-2 rounded">
-                           <!-- Custom content-->
-                           <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                               <div class="media-body order-2 order-lg-1">
-                                   <h5 class="mt-0 font-weight-bold mb-2">Apple iPhone XR (Red, 128 GB)</h5>
-                                   <p class="font-italic text-muted mb-0 small">128 GB ROM | 15.49 cm (6.1 inch) Display 12MP Rear Camera | 7MP Front Camera A12 Bionic Chip Processor</p>
-                                   <div class="d-flex align-items-center justify-content-between mt-1">
-                                       <h6 class="font-weight-bold my-2">₹64,999</h6>
-                                       <ul class="list-inline small">
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
-                                       </ul>
-                                   </div>
-                               </div><img src="https://i.imgur.com/KFojDGa.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-                           </div> <!-- End -->
-                       </li> <!-- End -->
-                       <!-- list group item-->
-                       <li class="list-group-item m-2 rounded">
-                           <!-- Custom content-->
-                           <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                               <div class="media-body order-2 order-lg-1">
-                                   <h5 class="mt-0 font-weight-bold mb-2">Apple iPhone XS (Silver, 64 GB)</h5>
-                                   <p class="font-italic text-muted mb-0 small">64 GB ROM | 14.73 cm (5.8 inch) Super Retina HD Display 12MP + 12MP | 7MP Front Camera A12 Bionic Chip Processor</p>
-                                   <div class="d-flex align-items-center justify-content-between mt-1">
-                                       <h6 class="font-weight-bold my-2">₹99,900</h6>
-                                       <ul class="list-inline small">
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                       </ul>
-                                   </div>
-                               </div><img src="https://i.imgur.com/KFojDGa.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-                           </div> <!-- End -->
-                       </li> <!-- End -->
-                       <!-- list group item -->
-                       <li class="list-group-item m-2 rounded">
-                           <!-- Custom content-->
-                           <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                               <div class="media-body order-2 order-lg-1">
-                                   <h5 class="mt-0 font-weight-bold mb-2">OnePlus 7 Pro (Almond, 256 GB)</h5>
-                                   <p class="font-italic text-muted mb-0 small">Rear Camera|48MP (Primary)+ 8MP (Tele-photo)+16MP (ultrawide)| Front Camera|16 MP POP-UP Camera|8GB RAM|Android pie</p>
-                                   <div class="d-flex align-items-center justify-content-between mt-1">
-                                       <h6 class="font-weight-bold my-2">₹ 52,999</h6>
-                                       <ul class="list-inline small">
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                           <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                       </ul>
-                                   </div>
-                               </div><img src="https://i.imgur.com/6IUbEME.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
-                           </div> <!-- End -->
-                       </li> <!-- End -->
-                   </ul> <!-- End -->
+                   </ul>
                </div>
            </div>
        </div>`
        content.empty().append(newContent)
+
+}
+$( window ).on( "load", function () {
+   LoadHome()
+});
+$(document).ready(function (){
+    let content = $('#content')
+    $(document).on('click', "#home", ()=>{
+        playMedia('../media/beyond-doubt-2-581.mp3')
+        LoadHome()
+    })
+    $(document).on('click', "#search", ()=>{
+        playMedia('../media/beyond-doubt-2-581.mp3')
+        LoadSearch()
     })
     $(document).on('click', '#add', ()=>{
         LoadAdd()
@@ -251,21 +203,21 @@ $(document).ready(function (){
                 date_visited: $('#date').val() + " " + $('#time').val(),
                 notes: $('#notes').val(),
             }
-            const addResquest = addData("Irate", rate)
+            addData("Irate", rate)
 
-            addResquest.onsuccess = () => {
-                let html = `<div class="alert alert-primary" role="alert">
-                Your feedback has been posted
-              </div>`
-                LoadHome()
-              $('#content').append(html)
-              return false
-            }
         })
     })
       
     $(document).on('click', '#delete_rate', function () {
-        
-        DeleteData($(this).attr("rateId"))
+        const rateid =  $(this).attr("rateId")
+       DeleteData(rateid)
+    })
+    $(document).on('click', '#searchBtn', ()=>{
+        const keySearch = $('#keySearch').val().toString()
+        const result = Search(keySearch)
+        result.onsuccess = (event) =>{
+            // const searchResult = event.target.result
+            console.log(event.target.result)
+        }
     })
 })
