@@ -1,90 +1,55 @@
-const listRes = [
+const listResFeedback = [
    {
-      res_name: 'Restaurant 1',
-      res_type: 'fast food',
-      owner: "Owner test 1",
-      service_rate: "Good",
-      clean_rate: "Good",
-      food_rate: "Good",
+      restaurant_name: 'Restaurant 1',
+      restaurant_type: 'fast food',
+      date_time: "Owner test 1",
+      image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
+      ave_meal_price: "300000",
+      service_rating: "Good",
+      cleanliness_rating: "Good",
+      food_quality_rating: "Good",
       notes: "",
-      image: ['https://upload.wikimedia.org/wikipedia/commons/f/f1/Teremok_fast_food_restaurant_Saint_Petersburg.jpg', 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Teremok_fast_food_restaurant_Saint_Petersburg.jpg']
-   }, 
-   {
-      res_name: 'Restaurant 1',
-      res_type: 'fast food',
-      owner: "Owner test 1",
-      service_rate: "Good",
-      clean_rate: "Good",
-      food_rate: "Good",
-      notes: "",
-      image: ['https://upload.wikimedia.org/wikipedia/commons/f/f1/Teremok_fast_food_restaurant_Saint_Petersburg.jpg', 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Teremok_fast_food_restaurant_Saint_Petersburg.jpg']
+      reporter_name: "Huy"
    },
    {
-      res_name: 'Restaurant 1',
-      res_type: 'fast food',
-      owner: "Owner test 1",
-      service_rate: "Good",
-      clean_rate: "Good",
-      food_rate: "Good",
-      notes: "",
-      image: ['https://upload.wikimedia.org/wikipedia/commons/f/f1/Teremok_fast_food_restaurant_Saint_Petersburg.jpg', 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Teremok_fast_food_restaurant_Saint_Petersburg.jpg']
-   },
-   {
-      res_name: 'Restaurant 1',
-      res_type: 'fast food',
-      owner: "Owner test 1",
-      service_rate: "Good",
-      clean_rate: "Good",
-      food_rate: "Good",
-      notes: "",
-      image: ['https://upload.wikimedia.org/wikipedia/commons/f/f1/Teremok_fast_food_restaurant_Saint_Petersburg.jpg', 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Teremok_fast_food_restaurant_Saint_Petersburg.jpg']
-   }
+       restaurant_name: 'Restaurant 1',
+       restaurant_type: 'fast food',
+       date_time: "Owner test 1",
+       image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
+       ave_meal_price: "300000",
+       service_rating: "Good",
+       cleanliness_rating: "Good",
+       food_quality_rating: "Good",
+       notes: "",
+       reporter_name: "Huy"
+    },
+    {
+       restaurant_name: 'Restaurant 1',
+       restaurant_type: 'fast food',
+       date_time: "Owner test 1",
+       image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
+       ave_meal_price: "300000",
+       service_rating: "Good",
+       cleanliness_rating: "Good",
+       food_quality_rating: "Good",
+       notes: "",
+       reporter_name: "Huy"
+    }
 ]
-var db;
- var request = window.indexedDB.open("I-rate", 2);
- request.onupgradeneeded = function(event) {
-    var db = event.target.result;
-    var objectStore = db.createObjectStore("Irate", {keyPath: "id", autoIncrement: true});
-      for(var i in listRes){
-         objectStore.add(listRes[i])
-      }
+var database;
+var request = window.indexedDB.open("Restaurant-Feedback", 2);
+request.onupgradeneeded = function(event) {
+   var database = event.target.result;
+   var objectRes = database.createObjectStore("Restaurant-Feedback", {keyPath: "id", autoIncrement: true});
+   for(var i in listResFeedback){
+       objectRes.add(listResFeedback[i])
    }
+}
 request.onsuccess = function(event) {
-    db = request.result;
-    console.log("success: "+ db);
- };
- function getAllData(collectionName) {
-    const transaction = db.transaction([collectionName], "readonly")
-    const objectStore =transaction.objectStore(collectionName)
-    request = objectStore.getAll();
-    return request
- }
- function addData(collectionName, data) {
-    const Newdata = db.transaction([collectionName], "readwrite").objectStore(collectionName).add(data)
-    Newdata.onsuccess = () => {
-      let html = `<div class="alert alert-primary" role="alert">
-      Your feedback has been posted
-    </div>`
-      LoadAdd()
-    $('#content').append(html)
-  }
-  Newdata.onerror = () =>{
-     alert('Error Rate')
-  }
- }
- function DeleteData(data) {
-   const dataDelete = db.transaction(["Irate"], "readwrite").
-   objectStore("Irate").delete(Number(data))
-   dataDelete.onsuccess = function (){
-      playMedia('../media/are-you-kidding-488.mp3')
-      LoadHome()
-   }
-   dataDelete.onerror = function(){
-      alert("Error deleting")
-   }
- }
- function Search (data) {
-    return db.transaction(["Irate"], "readonly")
-    .objectStore("Irate").openCursor(IDBKeyRange.bound(data, data + '\uffff'), 'prev')
+   database = request.result;
+   console.log("Successfull!: "+ database);
+};
+function getAllData(collectionName) {
+   return database.transaction([collectionName], "readonly").objectStore(collectionName).getAll()
+}
 
- }

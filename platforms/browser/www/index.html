@@ -49,26 +49,7 @@
 
 <body>
     <div class="app">
-        <div class="jumbotron">
-            <div class="container text-center">
-            <h1 style="font-size:25px"><img src="https://img.icons8.com/dusk/64/000000/angry-face.png"/>IRate</h1>
-            </div>
-          </div>
-          <nav class="navbar navbar-expand-sm bg-light navbar-light">
-                <button  style="width:30%; background-color: #00ff80;" id="home">Home<i class="fa fa-home" aria-hidden="true"></i></button>
-                <button  style="width:40%; background-color: #66ccff" id="search">Search<i class="fa fa-search" aria-hidden="true"></i></button>
-                <button  style="width:30% ; background-color: #ff8000" id="add">Rated<i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
-          </nav>
-          
-          <div class="container" id="content">    
-          </div><br>
-          <footer class="container-fluid text-center">
-            <div class="d-flex justify-content-center">
-                <button  style="width:30%; background-color: #00ff80;" id="home">Home<i class="fa fa-home" aria-hidden="true"></i></button>
-                <button  style="width:40%; background-color: #66ccff" id="search">Search<i class="fa fa-search" aria-hidden="true"></i></button>
-                <button  style="width:30% ; background-color: #ff8000" id="add">Rated<i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
-            </div>
-          </footer>
+        
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
@@ -77,6 +58,24 @@
     <script type="text/javascript" src="js/db.js"></script> 
     <script type="text/javascript">
         app.initialize();
+        $(window).on('load', function() {
+        let resultLoad = getAllData("Restaurant-Feedback")
+        resultLoad.onsuccess = function(event) {
+        let result = event.target.result;
+        console.log(result)
+        for(let i in result) {
+            let newIndex = `<div class="col-md-3 col-sm-6">
+                <div class="products">
+                <div class="thumbnail"><a href="details.html"><img src="${result[i].image[0]}" alt="Product Name"></a></div>
+                <div class="productname">${result[i].restaurant_name}</div>
+                <div class="button_group"><button class="button add-cart" type="button">Feedback Detail</button></div>
+                <div class="button_group"><button class="button add-cart" type="button">Feedback</button></div>
+                </div>
+                </div>`
+            $('.app').append(newIndex);
+        }
+    }
+})
     </script>
 </body>
 
