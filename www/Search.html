@@ -59,12 +59,16 @@
        <div class="container_fullwidth">
           <div class="container">
              <div class="hot-products">
-                <h3 class="title">Search</h3>
-                <form action="POST">
-                    <div style="margin-top: 5px;">
-                        <input type="text" class="form-control" name="search" required placeholder="Enter Restaurant What You Want to Search?">
+                <h3 class="title"><strong>Search</strong></h3>
+                <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+                    <div class="group">
+                        <label>Find The Restaurant Was Feedbacked</label>
+                        <div>
+                            <input type="text" class="form-control" required placeholder="Enter Restaurant What You Want to Search?">
+                        </div>
                     </div>
-                    <input style="margin-top: 5px; margin-left: 80px;" class="btn btn-primary" type="search" value="SEARCH">
+                    <input style="margin-top: 5px; margin-left: 80px;" class="btn btn-primary" type="button" value="SEARCH">
+                    
                 </form>
              </div>
           </div>
