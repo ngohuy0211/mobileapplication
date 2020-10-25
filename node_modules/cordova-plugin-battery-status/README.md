@@ -1,7 +1,3 @@
----
-title: Battery Status
-description: Get events for device battery level.
----
 <!--
 # license: Licensed to the Apache Software Foundation (ASF) under one
 #         or more contributor license agreements.  See the NOTICE file
@@ -21,9 +17,7 @@ description: Get events for device battery level.
 #         under the License.
 -->
 
-|AppVeyor|Travis CI|
-|:-:|:-:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/github/apache/cordova-plugin-battery-status?branch=master)](https://ci.appveyor.com/project/ApacheSoftwareFoundation/cordova-plugin-battery-status)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-battery-status.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-battery-status)|
+[![Build Status](https://travis-ci.org/apache/cordova-plugin-battery-status.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-battery-status)
 
 # cordova-plugin-battery-status
 
@@ -65,7 +59,7 @@ Fires when the battery charge percentage changes by at least 1 percent, or when 
 - Android
 - BlackBerry 10
 - Windows Phone 7 and 8
-- Windows (Windows Phone 8.1 and Windows 10)
+- Windows (Windows Phone 8.1 only)
 - Firefox OS
 - Browser (Chrome, Firefox, Opera)
 
@@ -100,7 +94,7 @@ Fires when the battery charge percentage reaches the low charge threshold. This 
 - Android
 - BlackBerry 10
 - Firefox OS
-- Windows (Windows Phone 8.1 and Windows 10)
+- Windows (Windows Phone 8.1 only)
 - Browser (Chrome, Firefox, Opera)
 
 ### Quirks: Windows Phone 8.1
@@ -126,7 +120,7 @@ Fires when the battery charge percentage reaches the critical charge threshold. 
 - Android
 - BlackBerry 10
 - Firefox OS
-- Windows (Windows Phone 8.1 and Windows 10)
+- Windows (Windows Phone 8.1 only)
 - Browser (Chrome, Firefox, Opera)
 
 ### Quirks: Windows Phone 8.1
