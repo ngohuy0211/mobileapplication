@@ -53,3 +53,46 @@ function getAllData(collectionName) {
    return database.transaction([collectionName], "readonly").objectStore(collectionName).getAll()
 }
 
+// function addData(collectionName){
+//    const request = await db.transaction([collectionName], "readwrite").objectStore(collectionName).add(data)
+//    .objectStore("employee")
+//    request.onsuccess = function(event) {
+//       $('#create-feedback').each(function () {
+//          this.reset()
+//       })
+//       alert(`You rated successfully!`);
+//    };
+   
+//    request.onerror = function(event) {
+//       alert(`Error` );
+//    }
+// }
+
+//$('#create-feedback').on('submit', function(add){
+   // console.log($('#restaurant-name').val())
+   // console.log($('#restaurant-type').val())
+   // console.log($('#date-and-time').val())
+   // console.log($('#average-price').val())
+   // console.log($('#service-rating').val())
+   // console.log($('#clean-rate').val())
+   // console.log($('#food-rate').val())
+   // console.log($('#notes').val())
+   // console.log($('#reporter').val())
+   
+//    const feedback = {
+//       restaurant_name: $('#restaurant-name').val(),
+//       restaurant_type: $('#restaurant-type').val(),
+//       date_time: $('#date-and-time').val(),
+//       ave_meal_price: $('#average-price').val(),
+//       service_rating: $('#service-rating').val(),
+//       cleanliness_rating: $('#clean-rate').val(),
+//       food_quality_rating: $('#food-rate').val(),
+//       notes: $('#notes').val(),
+//       reporter_name: $('#reporter').val(),
+//    }
+//    addData("listResFeedback", feedback)
+//    return false
+
+// })
+
+
