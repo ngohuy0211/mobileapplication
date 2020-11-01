@@ -3,7 +3,7 @@ const listResFeedback = [
       restaurant_name: 'Restaurant 1',
       restaurant_type: 'fast food',
       date_time: "Owner test 1",
-      image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
+      // image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
       ave_meal_price: "300000",
       service_rating: "Good",
       cleanliness_rating: "Good",
@@ -15,7 +15,7 @@ const listResFeedback = [
        restaurant_name: 'Restaurant 1',
        restaurant_type: 'fast food',
        date_time: "Owner test 1",
-       image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
+      //  image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
        ave_meal_price: "300000",
        service_rating: "Good",
        cleanliness_rating: "Good",
@@ -27,14 +27,27 @@ const listResFeedback = [
        restaurant_name: 'Restaurant 1',
        restaurant_type: 'fast food',
        date_time: "Owner test 1",
-       image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
+      //  image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
        ave_meal_price: "300000",
        service_rating: "Good",
        cleanliness_rating: "Good",
        food_quality_rating: "Good",
        notes: "",
        reporter_name: "Huy"
-    }
+    },
+    {
+      restaurant_name: 'Restaurant 1',
+      restaurant_type: 'fast food',
+      date_time: "Owner test 1",
+      // image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
+      ave_meal_price: "300000",
+      service_rating: "Good",
+      cleanliness_rating: "Good",
+      food_quality_rating: "Good",
+      notes: "",
+      reporter_name: "Huy"
+   }
+
 ]
 var database;
 var request = window.indexedDB.open("Restaurant-Feedback", 2);
@@ -52,6 +65,7 @@ request.onsuccess = function(event) {
 function getAllData(collectionName) {
    return database.transaction([collectionName], "readonly").objectStore(collectionName).getAll()
 }
+
 $(window).on('load', function() {
    let resultLoad = getAllData("Restaurant-Feedback")
    resultLoad.onsuccess = function(event) {
@@ -59,18 +73,32 @@ $(window).on('load', function() {
        console.log(result)
        for(let i in result) {
            let newIndex = `<div class="col-md-3 col-sm-6">
-               <div class="products">
-               <div class="thumbnail"><a href="feedback-detail.html"><img src="${result[i].image[0]}" alt="Product Name" width = 320 height = 320></a></div>
-               <div class="productname"><h4>${result[i].restaurant_name}</h4></div>
-               <div class="button_group"><button class="button add-cart" type="button"><a href="feedback-detail.html">Feedback Detail</a></button></div>
-               <div class="button_group"><button class="button add-cart" type="button"><a href="feedback.html">Add New Feedback</a></button></div>
-               <div class="button_group"><button class="button add-cart" type="button"><a href="">Delete</a></button></div>
-               </div>
-               </div>`
+                              <div class="products">
+                                 
+                                 <div class="productname">
+                                    <h4>${result[i].restaurant_name}</h4>
+                                 </div>
+                                 <div class="button_group">
+                                    <button class="button add-cart" type="button">
+                                       <a href="feedback-detail.html">Feedback Detail</a>
+                                    </button>
+                                 </div>
+                                 <div class="button_group">
+                                    <button class="button add-cart" type="button">
+                                       <a href="feedback.html">Add New Feedback</a>
+                                    </button>
+                                 </div>
+                                 <div class="button_group">
+                                    <button class="button add-cart" type="button">
+                                       <a href="">Delete</a>
+                                    </button>
+                                 </div>
+                              </div>
+                           </div>`
            $('#data').append(newIndex);
        }
    } 
-})
+});
 
 function addData(collectionName, data){
    const request = database.transaction([collectionName], "readwrite").objectStore(collectionName).add(data)
