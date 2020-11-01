@@ -118,26 +118,6 @@
     <script type="text/javascript" src="js/database.js"></script> 
     <script type="text/javascript">
         app.initialize();
-
-        $(window).on('load', function() {
-            let resultLoad = getAllData("Restaurant-Feedback")
-            resultLoad.onsuccess = function(event) {
-                let result = event.target.result;
-                console.log(result)
-                for(let i in result) {
-                    let newIndex = `<div class="col-md-3 col-sm-6">
-                        <div class="products">
-                        <div class="thumbnail"><a href="feedback-detail.html"><img src="${result[i].image[0]}" alt="Product Name" width = 320 height = 320></a></div>
-                        <div class="productname"><h4>${result[i].restaurant_name}</h4></div>
-                        <div class="button_group"><button class="button add-cart" type="button"><a href="feedback-detail.html">Feedback Detail</a></button></div>
-                        <div class="button_group"><button class="button add-cart" type="button"><a href="feedback.html">Add New Feedback</a></button></div>
-                        <div class="button_group"><button class="button add-cart" type="button"><a href="">Delete</a></button></div>
-                        </div>
-                        </div>`
-                    $('#data').append(newIndex);
-                }
-            } 
-        })
     </script>
 </body>
 

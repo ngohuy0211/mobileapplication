@@ -1,6 +1,6 @@
 {
-  "name": "IRate",
-  "short_name": "IRate",
+  "name": "Feedback For Me",
+  "short_name": "Feedback For Me",
   "description": "Description of your app from template",
   "start_url": "index.html",
   "scope": "index.html",

@@ -52,23 +52,42 @@ request.onsuccess = function(event) {
 function getAllData(collectionName) {
    return database.transaction([collectionName], "readonly").objectStore(collectionName).getAll()
 }
+$(window).on('load', function() {
+   let resultLoad = getAllData("Restaurant-Feedback")
+   resultLoad.onsuccess = function(event) {
+       let result = event.target.result;
+       console.log(result)
+       for(let i in result) {
+           let newIndex = `<div class="col-md-3 col-sm-6">
+               <div class="products">
+               <div class="thumbnail"><a href="feedback-detail.html"><img src="${result[i].image[0]}" alt="Product Name" width = 320 height = 320></a></div>
+               <div class="productname"><h4>${result[i].restaurant_name}</h4></div>
+               <div class="button_group"><button class="button add-cart" type="button"><a href="feedback-detail.html">Feedback Detail</a></button></div>
+               <div class="button_group"><button class="button add-cart" type="button"><a href="feedback.html">Add New Feedback</a></button></div>
+               <div class="button_group"><button class="button add-cart" type="button"><a href="">Delete</a></button></div>
+               </div>
+               </div>`
+           $('#data').append(newIndex);
+       }
+   } 
+})
 
-// function addData(collectionName){
-//    const request = await db.transaction([collectionName], "readwrite").objectStore(collectionName).add(data)
-//    .objectStore("employee")
-//    request.onsuccess = function(event) {
-//       $('#create-feedback').each(function () {
-//          this.reset()
-//       })
-//       alert(`You rated successfully!`);
-//    };
+function addData(collectionName, data){
+   const request = database.transaction([collectionName], "readwrite").objectStore(collectionName).add(data)
+   request.onsuccess = function(event) {
+      $('#create-feedback').each(function () {
+         this.reset()
+      })
+
+      alert(`You rated successfully!`);
+   };
    
-//    request.onerror = function(event) {
-//       alert(`Error` );
-//    }
-// }
+   request.onerror = function(event) {
+      alert(`Error` );
+   }
+}
 
-//$('#create-feedback').on('submit', function(add){
+$('#create-feedback').on('submit', function(){
    // console.log($('#restaurant-name').val())
    // console.log($('#restaurant-type').val())
    // console.log($('#date-and-time').val())
@@ -79,20 +98,20 @@ function getAllData(collectionName) {
    // console.log($('#notes').val())
    // console.log($('#reporter').val())
    
-//    const feedback = {
-//       restaurant_name: $('#restaurant-name').val(),
-//       restaurant_type: $('#restaurant-type').val(),
-//       date_time: $('#date-and-time').val(),
-//       ave_meal_price: $('#average-price').val(),
-//       service_rating: $('#service-rating').val(),
-//       cleanliness_rating: $('#clean-rate').val(),
-//       food_quality_rating: $('#food-rate').val(),
-//       notes: $('#notes').val(),
-//       reporter_name: $('#reporter').val(),
-//    }
-//    addData("listResFeedback", feedback)
-//    return false
+   const feedback = {
+      restaurant_name: $('#restaurant-name').val(),
+      restaurant_type: $('#restaurant-type').val(),
+      date_time: $('#date-and-time').val(),
+      ave_meal_price: $('#average-price').val(),
+      service_rating: $('#service-rating').val(),
+      cleanliness_rating: $('#clean-rate').val(),
+      food_quality_rating: $('#food-rate').val(),
+      notes: $('#notes').val(),
+      reporter_name: $('#reporter').val(),
+   }
+   addData("Restaurant-Feedback", feedback)
+   return false
 
-// })
+})
 
 
