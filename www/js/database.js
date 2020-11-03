@@ -60,7 +60,6 @@ request.onupgradeneeded = function(event) {
 }
 request.onsuccess = function(event) {
    database = request.result;
-   console.log("Successfull!: "+ database);
 };
 function getAllData(collectionName) {
    return database.transaction([collectionName], "readonly").objectStore(collectionName).getAll()
@@ -75,16 +74,40 @@ $(window).on('load', function() {
            let newIndex =
                         `<div class="col-md-3 col-sm-6">
                         <div class="products" style="margin: 10px">
-                        <div class="thumbnail"><a href="details.html"><img src="${result[i].image[0]}" alt="Product Name" width="350" height="350"></a></div>
+                        <div class="thumbnail"><a href="details.html"><img src="${result[i].image}" alt="Product Name" width="350" height="350"></a></div>
                         <div class="productname" style="margin-top: 10px">${result[i].restaurant_name}</div>
                         <div class="button_group"><button class="button add-cart" type="button">Feedback Detail</button></div>
-                        <div class="button_group"><button class="button add-cart" type="button"><a href="feedback.html">Add New Feedback</a></button></div>
+                        <div class="button_group"><button class="button add-cart" type="button"><a href="#" onClick='reloadFeedback()'>Add New Feedback</a></button></div>
+                        <div class="button_group"><button class="button add-cart" type="button" onClick='deleteData(${result[i].id})'>Delete</button></div>
                         </div>
                         </div>`
            $('#myGrid').append(newIndex);
        }
    } 
 });
+
+function reloadFeedback() {
+   window.location= 'feedback.html'
+}
+
+function reloadHome() {
+   window.location = 'index.html'
+}
+
+function reloadSearch() {
+   window.location = 'Search.html'
+}
+
+function deleteData(id) {
+   var request = database.transaction(["Restaurant-Feedback"], "readwrite")
+   .objectStore("Restaurant-Feedback")
+   .delete(parseInt(id));
+
+   request.onsuccess = function(event) {
+      alert("prasad entry has been removed from your database.");
+      window.location = "index.html"
+   };
+}
 
 function addData(collectionName, data){
    const request = database.transaction([collectionName], "readwrite").objectStore(collectionName).add(data)
@@ -94,12 +117,32 @@ function addData(collectionName, data){
       })
 
       alert(`You rated successfully!`);
+      window.location = "index.html"
    };
    
    request.onerror = function(event) {
       alert(`Error` );
    }
 }
+
+// search
+// function search() {
+//    var keyword =  $('#txtSearch').val();
+//    var transaction = database.transaction("Restaurant-Feedback", "readwrite");
+//    var objectStore = transaction.objectStore("Restaurant-Feedback");
+//    var request = objectStore.openCursor();
+//    request.onsuccess = function(event) {
+//        var cursor = event.target.result;
+//        if (cursor) {
+//            if (cursor.value.column.indexOf(keyword) !== -1) {                
+//                console.log(cursor.value);
+//            }  
+
+//            cursor.continue();          
+//        }
+//    };
+// }
+
 
 $('#create-feedback').on('submit', function(){
    // console.log($('#restaurant-name').val())

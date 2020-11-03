@@ -46,9 +46,10 @@
               <i class="fa fa-remove"></i>
           </a>
           <div class="w3-bar-block w3-center">
-              <a href="#" onClick="reloadHome()" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Home</a>
-              <a href="#" onClick="reloadFeedback()" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Feedback</a>
-              <a href="#" onClick="reloadSearch()" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Search</a>
+              <a href="#" onClick="home()" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Home</a>
+              <a href="#" onClick="reload()" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Feedback</a>
+              <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Search</a>
+              <input type="text" placeholder="Input the Restaurant what you want to find!">
           </div>
       </nav>
       
@@ -83,12 +84,12 @@
                         </div>
                   </div>
 
-                  <div class="group">
+                  <!-- <div class="group">
                         <label>Images</label>
                         <div>
                            <input type="file" class="file-uploader pull-left" name="images" id="images">
                         </div>
-                  </div>
+                  </div> -->
 
                   <div class="group" style="margin-top: 40px;">
                         <label>Average meal price per person</label>
