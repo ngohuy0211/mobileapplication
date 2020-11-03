@@ -3,7 +3,7 @@ const listResFeedback = [
       restaurant_name: 'Restaurant 1',
       restaurant_type: 'fast food',
       date_time: "Owner test 1",
-      // image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
+      image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
       ave_meal_price: "300000",
       service_rating: "Good",
       cleanliness_rating: "Good",
@@ -15,7 +15,7 @@ const listResFeedback = [
        restaurant_name: 'Restaurant 1',
        restaurant_type: 'fast food',
        date_time: "Owner test 1",
-      //  image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
+       image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
        ave_meal_price: "300000",
        service_rating: "Good",
        cleanliness_rating: "Good",
@@ -27,7 +27,7 @@ const listResFeedback = [
        restaurant_name: 'Restaurant 1',
        restaurant_type: 'fast food',
        date_time: "Owner test 1",
-      //  image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
+       image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
        ave_meal_price: "300000",
        service_rating: "Good",
        cleanliness_rating: "Good",
@@ -39,7 +39,7 @@ const listResFeedback = [
       restaurant_name: 'Restaurant 1',
       restaurant_type: 'fast food',
       date_time: "Owner test 1",
-      // image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
+      image: ['https://media-cdn.tripadvisor.com/media/photo-s/0e/cc/0a/dc/restaurant-chocolat.jpg'],
       ave_meal_price: "300000",
       service_rating: "Good",
       cleanliness_rating: "Good",
@@ -72,30 +72,16 @@ $(window).on('load', function() {
        let result = event.target.result;
        console.log(result)
        for(let i in result) {
-           let newIndex = `<div class="col-md-3 col-sm-6">
-                              <div class="products">
-                                 
-                                 <div class="productname">
-                                    <h4>${result[i].restaurant_name}</h4>
-                                 </div>
-                                 <div class="button_group">
-                                    <button class="button add-cart" type="button">
-                                       <a href="feedback-detail.html">Feedback Detail</a>
-                                    </button>
-                                 </div>
-                                 <div class="button_group">
-                                    <button class="button add-cart" type="button">
-                                       <a href="feedback.html">Add New Feedback</a>
-                                    </button>
-                                 </div>
-                                 <div class="button_group">
-                                    <button class="button add-cart" type="button">
-                                       <a href="">Delete</a>
-                                    </button>
-                                 </div>
-                              </div>
-                           </div>`
-           $('#data').append(newIndex);
+           let newIndex =
+                        `<div class="col-md-3 col-sm-6">
+                        <div class="products" style="margin: 10px">
+                        <div class="thumbnail"><a href="details.html"><img src="${result[i].image[0]}" alt="Product Name" width="350" height="350"></a></div>
+                        <div class="productname" style="margin-top: 10px">${result[i].restaurant_name}</div>
+                        <div class="button_group"><button class="button add-cart" type="button">Feedback Detail</button></div>
+                        <div class="button_group"><button class="button add-cart" type="button"><a href="feedback.html">Add New Feedback</a></button></div>
+                        </div>
+                        </div>`
+           $('#myGrid').append(newIndex);
        }
    } 
 });
