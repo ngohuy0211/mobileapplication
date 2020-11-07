@@ -83,5 +83,35 @@
         function detail(id) {
             window.location = 'detail.html?id=' + id
         } 
+        let resultLoad = getAllData("Restaurant-Feedback")
+   resultLoad.onsuccess = function(event) {
+         let result = event.target.result;
+         console.log(result)
+         for(let i in result) {
+            let newIndex =
+                           `<div class="col-md-3 col-sm-6">
+                              <div class="products" style="margin: 10px">
+                                 <div class="thumbnail">
+                                    <a href="details.html">
+                                       <img src="${result[i].image}" alt="Product Name" width="350" height="350">
+                                    </a>
+                                 </div>
+                                 <div class="productname" style="margin-top: 10px">${result[i].restaurant_name}</div>
+                                 <div class="button_group">
+                                    <button class="button add-cart" type="button" onClick='detail(${result[i].id})'>Feedback Detail</button>
+                                 </div>
+                                 <div class="button_group">
+                                    <button class="button add-cart" type="button">
+                                       <a href="#" onClick='reloadFeedback()'>Add New Feedback</a>
+                                    </button>
+                                 </div>
+                                 <div class="button_group">
+                                    <button class="button add-cart" type="button" onClick='deleteData(${result[i].id})'>Delete</button>
+                                 </div>
+                              </div>
+                           </div>`
+            $('#myGrid').append(newIndex);
+         }
+   } 
     </script>
 </html>
