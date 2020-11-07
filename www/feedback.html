@@ -31,7 +31,7 @@
           float: left;
        }
       .group {
-         margin-top: 20px;
+         margin: 10px;
        }
       form .group div{
           margin-top: 5px;
@@ -54,110 +54,116 @@
       
       <div class="w3-content" style="max-width:1500px">
       
-          <div class="w3-opacity">
-              <span class="w3-button w3-xxlarge w3-white w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></span> 
-              <div class="w3-clear"></div>
-              <header class="w3-center w3-margin-bottom">
-                  <h2><b>Restaurant Feedback</b></h2>
-              </header>
-          </div>
-            <form class="form-horizontal" id= "create-feedback" >
-                  <div class="group">
-                     <label>Restaurant Name</label>
-                     <div>
-                        <input type="text" class="form-control" name="restaurant-name" id="restaurant-name">
-                     </div>
-                  </div>
-
-                  <div class="group">
-                        <label>Restaurant Type</label>
-                        <div>
-                           <input type="text" class="form-control" name="restaurant-type" id="restaurant-type">
-                        </div>
-                  </div>
-
-                  <div class="group">
-                        <label>Date and time of the visit</label>
-                        <div>
-                           <input type="date" class="form-control" name="date-and-time" id="date-and-time">
-                        </div>
-                  </div>
-
-                  <div class="group">
-                        <label>Images</label>
-                        <div>
-                           <input type="file" class="file-uploader pull-left" name="images" id="images">
-                        </div>
-                  </div>
-
-                  <div class="group" style="margin-top: 40px;">
-                        <label>Average meal price per person</label>
-                        <div>
-                           <input type="text" class="form-control" name="average-price" id="average-price">
-                        </div>
-                  </div>
-
-                  <div class="group">
-                        <label>Service rating</label>
-                        <div>
-                           <!-- <input type="text" class="form-control" name="service-rating" id="service-rating"> -->
-                           <select class="form-control" name="service-rating" id="service-rating">
-                              <option value="1">Bad</option>
-                              <option value="2">Normal</option>
-                              <option value="3">Good</option>
-                              <option value="4">Very Good</option>
-                           </select>
-                        </div>
-                  </div>
-
-                  <div class="group">
-                        <label>Cleanliness rating</label>
-                        <div>
-                           <!-- <input type="text" class="form-control" name="clean-rate" id="clean-rate"> -->
-                           <select class="form-control" name="clean-rate" id="clean-rate">
-                              <option value="1">Bad</option>
-                              <option value="2">Normal</option>
-                              <option value="3">Good</option>
-                              <option value="4">Very Good</option>
-                           </select>
-                        </div>
-                  </div>
-
-                  <div class="group">
-                        <label>Food quality rating</label>
-                        <div>
-                           <!-- <input type="text" class="form-control" name="food-rate" id="food-rate"> -->
-                           <select class="form-control" name="food-rate" id="food-rate">
-                              <option value="1">Bad</option>
-                              <option value="2">Normal</option>
-                              <option value="3">Good</option>
-                              <option value="4">Very Good</option>
-                           </select>
-                        </div>
-                  </div>
-
-                  <div class="group">
-                        <label>Notes</label>
-                        <div>
-                           <textarea name="notes" rows="9" cols="48" id="notes"></textarea>
-                        </div>
-                  </div>
-
-                  <div class="group">
-                        <label>Name of the reporter</label>
-                        <div>
-                           <input type="text" class="form-control" name="reporter" id="reporter">
-                        </div>
-                  </div>
-                  <hr>
+         <div class="w3-opacity">
+            <span class="w3-button w3-xxlarge w3-white w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></span> 
+            <div class="w3-clear"></div>
+            <header class="w3-center w3-margin-bottom">
+               <h2><b>Restaurant Feedback</b></h2>
+            </header>
+         </div>
+         <form id="create-feedback" >
+               <div class="group">
+                  <label>Restaurant Name</label>
                   <div>
-                     <div>
-                        <input class="btn btn-primary" type="submit" value="SUBMIT">
-                        <a class="btn btn-danger" href="index.html" role="button">Cancel</a>
-                     </div>
+                     <input type="text" class="form-control" name="restaurant-name" id="restaurant-name">
                   </div>
-            </form>
+               </div>
+
+               <div class="group">
+                     <label>Restaurant Type</label>
+                     <div>
+                        <input type="text" class="form-control" name="restaurant-type" id="restaurant-type">
+                     </div>
+               </div>
+
+               <div class="group">
+                     <label>Date and time of the visit</label>
+                     <div>
+                        <input type="date" class="form-control" name="date-and-time" id="date-and-time">
+                     </div>
+               </div>
+
+               <div class="group">
+                     <label>Images</label>
+                     <div>
+                        <input type="file" class="file-uploader pull-left" name="images[]" id="images">
+                        <ul id="ulTag"></ul>
+                     </div>
+               </div>
+
+               <div class="group" style="margin-top: 40px;">
+                     <label>Average meal price per person</label>
+                     <div>
+                        <input type="text" class="form-control" name="average-price" id="average-price">
+                     </div>
+               </div>
+
+               <div class="group">
+                     <label>Service rating</label>
+                     <div>
+                        <select class="form-control" name="service-rating" id="service-rating">
+                           <option value="1">Bad</option>
+                           <option value="2">Normal</option>
+                           <option value="3">Good</option>
+                           <option value="4">Very Good</option>
+                        </select>
+                     </div>
+               </div>
+
+               <div class="group">
+                     <label>Cleanliness rating</label>
+                     <div>
+                        <select class="form-control" name="clean-rate" id="clean-rate">
+                           <option value="1">Bad</option>
+                           <option value="2">Normal</option>
+                           <option value="3">Good</option>
+                           <option value="4">Very Good</option>
+                        </select>
+                     </div>
+               </div>
+
+               <div class="group">
+                     <label>Food quality rating</label>
+                     <div>
+                        <select class="form-control" name="food-rate" id="food-rate">
+                           <option value="1">Bad</option>
+                           <option value="2">Normal</option>
+                           <option value="3">Good</option>
+                           <option value="4">Very Good</option>
+                        </select>
+                     </div>
+               </div>
+
+               <div class="group">
+                     <label>Notes</label>
+                     <div>
+                        <textarea name="notes" rows="9" cols="48" id="notes"></textarea>
+                     </div>
+               </div>
+
+               <div class="group">
+                     <label>Name of the reporter</label>
+                     <div>
+                        <input type="text" class="form-control" name="reporter" id="reporter">
+                     </div>
+               </div>
+               <hr>
+               <div>
+                  <div class="group">
+                     <input type="submit" value="SUBMIT">
+                     <a class="btn btn-danger" href="#" role="button" onClick="reloadHome()">Cancel</a>
+                  </div>
+               </div>
+         </form>
       </div>
+      <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin-top:128px"> 
+         <i class="fa fa-facebook-official w3-hover-opacity"></i>
+         <i class="fa fa-instagram w3-hover-opacity"></i>
+         <i class="fa fa-snapchat w3-hover-opacity"></i>
+         <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+         <i class="fa fa-twitter w3-hover-opacity"></i>
+         <i class="fa fa-linkedin w3-hover-opacity"></i>
+     </footer>
    </div>
    
     <script type="text/javascript" src="cordova.js"></script>

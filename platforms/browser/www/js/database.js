@@ -65,27 +65,6 @@ function getAllData(collectionName) {
    return database.transaction([collectionName], "readonly").objectStore(collectionName).getAll()
 }
 
-$(window).on('load', function() {
-   let resultLoad = getAllData("Restaurant-Feedback")
-   resultLoad.onsuccess = function(event) {
-       let result = event.target.result;
-       console.log(result)
-       for(let i in result) {
-           let newIndex =
-                        `<div class="col-md-3 col-sm-6">
-                        <div class="products" style="margin: 10px">
-                        <div class="thumbnail"><a href="details.html"><img src="${result[i].image}" alt="Product Name" width="350" height="350"></a></div>
-                        <div class="productname" style="margin-top: 10px">${result[i].restaurant_name}</div>
-                        <div class="button_group"><button class="button add-cart" type="button">Feedback Detail</button></div>
-                        <div class="button_group"><button class="button add-cart" type="button"><a href="#" onClick='reloadFeedback()'>Add New Feedback</a></button></div>
-                        <div class="button_group"><button class="button add-cart" type="button" onClick='deleteData(${result[i].id})'>Delete</button></div>
-                        </div>
-                        </div>`
-           $('#myGrid').append(newIndex);
-       }
-   } 
-});
-
 function reloadFeedback() {
    window.location= 'feedback.html'
 }
@@ -95,8 +74,41 @@ function reloadHome() {
 }
 
 function reloadSearch() {
-   window.location = 'Search.html'
+   window.location = 'search.html'
 }
+
+$(window).on('load', function() {
+   let resultLoad = getAllData("Restaurant-Feedback")
+   resultLoad.onsuccess = function(event) {
+         let result = event.target.result;
+         console.log(result)
+         for(let i in result) {
+            let newIndex =
+                           `<div class="col-md-3 col-sm-6">
+                              <div class="products" style="margin: 10px">
+                                 <div class="thumbnail">
+                                    <a href="details.html">
+                                       <img src="${result[i].image}" alt="Product Name" width="350" height="350">
+                                    </a>
+                                 </div>
+                                 <div class="productname" style="margin-top: 10px">${result[i].restaurant_name}</div>
+                                 <div class="button_group">
+                                    <button class="button add-cart" type="button" onClick='detail(${result[i].id})'>Feedback Detail</button>
+                                 </div>
+                                 <div class="button_group">
+                                    <button class="button add-cart" type="button">
+                                       <a href="#" onClick='reloadFeedback()'>Add New Feedback</a>
+                                    </button>
+                                 </div>
+                                 <div class="button_group">
+                                    <button class="button add-cart" type="button" onClick='deleteData(${result[i].id})'>Delete</button>
+                                 </div>
+                              </div>
+                           </div>`
+            $('#myGrid').append(newIndex);
+         }
+   } 
+});
 
 function deleteData(id) {
    var request = database.transaction(["Restaurant-Feedback"], "readwrite")
@@ -104,7 +116,7 @@ function deleteData(id) {
    .delete(parseInt(id));
 
    request.onsuccess = function(event) {
-      alert("prasad entry has been removed from your database.");
+      alert("Removed successfully!");
       window.location = "index.html"
    };
 }
@@ -115,6 +127,7 @@ function addData(collectionName, data){
       $('#create-feedback').each(function () {
          this.reset()
       })
+      window.location = "index.html"
 
       alert(`You rated successfully!`);
       window.location = "index.html"
@@ -159,6 +172,7 @@ $('#create-feedback').on('submit', function(){
       restaurant_name: $('#restaurant-name').val(),
       restaurant_type: $('#restaurant-type').val(),
       date_time: $('#date-and-time').val(),
+      image: $('#images').val(),
       ave_meal_price: $('#average-price').val(),
       service_rating: $('#service-rating').val(),
       cleanliness_rating: $('#clean-rate').val(),
@@ -170,5 +184,6 @@ $('#create-feedback').on('submit', function(){
    return false
 
 })
+
 
 

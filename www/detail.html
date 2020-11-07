@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <h3>Name: </h3>
+    <p id="name"></p> 
+    <h3>Type: </h3>
+    <p id="type"></p> 
+    <h3>Date: </h3>
+    <p id="date"></p> 
+    <h3>Ave: </h3>
+    <p id="ave"></p> 
+    <h3>Rate: </h3>
+    <p id="rate"></p> 
+    <h3>Note: </h3>
+    <p id="note"></p> 
+    <h3>Reporter: </h3>
+    <p id="reporter"></p> 
+</body>
+<script type="text/javascript" src="js/database.js"></script> 
+<script>
+    $(window).on('load', function() {
+        var text = window.location.search
+        
+   let resultLoad = getAllData("Restaurant-Feedback")
+   resultLoad.onsuccess = function(event) {
+         let result = event.target.result;
+         for(let i in result) {
+             if(result[i].id ==text.split('=')[1]){
+                $('#name').text(result[i].restaurant_name)
+            $('#type').text(result[i].restaurant_type)
+            $('#date').text(result[i].date_time)
+            $('#ave').text(result[i].ave_meal_price)
+            $('#note').text(result[i].notes)
+            $('#reporter').text(result[i].reporter_name)
+             }
+           
+         }
+   } 
+});
+</script>
+</html>
